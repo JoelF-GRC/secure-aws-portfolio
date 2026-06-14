@@ -113,11 +113,11 @@ resume-site/
 Performed using external JavaScript and fetch() API:
 
 ```javascript
-fetch('https://api.joelflood.com/visitors')
+fetch('https://hvmxivh8yg.execute-api.us-west-1.amazonaws.com/counter')
   .then(res => res.json())
   .then(data => {
     const el = document.getElementById('visitor-counter');
-    if (el) el.textContent = `Visitors: ${data.count}`;
+    if (el) el.textContent = `Visitors: ${data.visits || data.count || data.visitors}`;
   })
   .catch(() => {
     const el = document.getElementById('visitor-counter');
