@@ -16,14 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* -----------------------------
-     Obfuscated Email Link
-  ----------------------------- */
-  var emailLink = document.getElementById('email-link');
-  if (emailLink) {
-    emailLink.href = 'mai' + 'lto:' + 'joel.flood' + '@' + 'gmail' + '.com';
-  }
-
-  /* -----------------------------
      Footer Year
   ----------------------------- */
   var yearEl = document.getElementById('year');
