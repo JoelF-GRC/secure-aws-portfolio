@@ -599,10 +599,8 @@ main {
 
 .footer-inner {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between; /* space between left and right items */
   align-items: center;
-  gap: 8px 16px;
   font-size: 0.8rem;
   color: var(--muted);
 }
@@ -615,14 +613,6 @@ main {
   background: var(--accent-soft);
   color: var(--muted);
   white-space: nowrap;  /* Prevent line breaks */
-}
-
-/* Cloud Resume Challenge callout */
-.crc-callout {
-  flex-basis: 100%;
-  font-size: 0.75rem;
-  text-align: center;
-  order: 1;
 }
 
 /* --------------------
