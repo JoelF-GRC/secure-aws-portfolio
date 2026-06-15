@@ -122,6 +122,12 @@ The site features:
 - Esc and click-to-close supported
 - CSP rules updated to allow required functionality
 
+### 4.5 Image Watermarking
+
+- One-time batch process (Python + Pillow) run via Lambda to apply a watermark to all artwork images in the S3 bucket.
+- Protects portfolio images from unauthorized reuse while keeping the site's static-hosting model unchanged.
+- Not an ongoing pipeline — new images added to the gallery must be watermarked using the same script before upload.
+
 ---
 
 ## 5. Security Hardening

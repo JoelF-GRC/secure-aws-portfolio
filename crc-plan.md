@@ -107,6 +107,7 @@ resume-site/
 - Mobile navigation using external JS  
 - Resume page printed cleanly onto a single page  
 - Visitor counter added to resume footer
+- Artwork images watermarked via a one-time Python (Pillow) batch job run on Lambda
 
 ### **Visitor Counter Frontend Integration**
 
