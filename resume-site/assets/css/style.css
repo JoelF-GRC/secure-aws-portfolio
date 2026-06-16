@@ -619,7 +619,7 @@ main {
    Responsive
 -------------------- */
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
   .header-inner {
     padding-inline: 16px;
   }
@@ -688,7 +688,7 @@ main {
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .grid-3,
   .grid-2 {
     grid-template-columns: minmax(0, 1fr);
@@ -815,7 +815,7 @@ main {
   }
 
   /* dark-mode hamburger colors on mobile */
-  @media (max-width: 800px) {
+  @media (max-width: 1024px) {
     .nav-toggle {
       background: rgba(255, 255, 255, 0.18);
       border-color: rgba(255, 255, 255, 0.3);
@@ -825,24 +825,17 @@ main {
       background: #ffffff;
     }
   }
-}
-    /* Buttons in dark mode */
+
+  /* Buttons in dark mode */
   .btn {
     background: #e5e7eb;
     color: #111827;
     border-color: #e5e7eb;
   }
 
-  .btn:hover,
-  .btn:focus-visible {
-    box-shadow: var(--shadow-soft);
-    transform: translateY(-1px);
-    text-decoration: none;
-  }
-
   .btn-ghost {
     background: transparent;
-    color: #e5e7eb;        /* light text on dark background */
+    color: #e5e7eb;
     border-color: #4b5563;
   }
 
@@ -852,21 +845,22 @@ main {
     border-color: #60a5fa;
     color: #ffffff;
   }
-/* --- Hero buttons contrast fix --------------------------- */
+
+  /* Lightbox in dark mode */
+  .lightbox-content {
+    background: #111827;
+  }
+
+  .lightbox-close {
+    color: #9ca3af;
+  }
+}
 
 /* Outline button: high contrast in light mode */
 .btn-ghost {
   background: transparent;
-  border: 1.5px solid #111827;   /* dark slate */
+  border: 1.5px solid #111827;
   color: #111827;
-}
-
-/* In dark mode, flip back to light outline/text */
-@media (prefers-color-scheme: dark) {
-  .btn-ghost {
-    border-color: #e5e7eb;
-    color: #e5e7eb;
-  }
 }
 /* --------------------
    Lightbox
@@ -925,4 +919,54 @@ main {
   object-fit: contain;
   border-radius: 0.75rem;
   margin: 0 auto;
+}
+
+/* --------------------
+   Print (resume page)
+-------------------- */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .lightbox {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .resume-page {
+    padding: 0;
+  }
+
+  .resume-name {
+    font-size: 18pt;
+    color: #000;
+  }
+
+  .resume-section {
+    margin-top: 14pt;
+    page-break-inside: avoid;
+  }
+
+  .chip {
+    background: none;
+    border: 1px solid #999;
+    color: #000;
+    padding: 2px 6px;
+    font-size: 8pt;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .visitor-counter {
+    display: none;
+  }
 }
