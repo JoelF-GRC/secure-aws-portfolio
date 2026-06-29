@@ -10,7 +10,7 @@ The site features:
 - A visual-first art portfolio (primary focus)
 - A clean, accessible professional resume page
 - Use of AWS services to demonstrate cloud proficiency
-- GitHub repo links for Cloud Resume Challenge and GRC/AWS projects
+- GitHub repo links for this project and other GRC/AWS projects
 - Optional pages for bicycles, Rebour drawings, and additional artwork
 
 ---
@@ -163,7 +163,7 @@ All configured at CloudFront, not inline:
 
 ---
 
-## 6. Visitor Counter (Cloud Resume Challenge Component)
+## 6. Visitor Counter (Serverless Component)
 
 ### 6.1 Backend Architecture
 

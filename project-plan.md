@@ -1,7 +1,7 @@
-# Cloud Resume Challenge – Updated Project Plan  
+# Secure AWS Portfolio – Project Plan  
 
 This plan reflects the **final architecture, security posture, and functionality** currently implemented on **joelflood.com**.  
-It expands beyond the original CRC requirements to include modern design, OAC-based S3 security, strict CSP headers, GuardDuty, geo-restriction tuning, and a scalable art‑focused structure.
+It covers modern design, OAC-based S3 security, strict CSP headers, GuardDuty, geo-restriction tuning, and a scalable art‑focused structure.
 
 ---
 
@@ -9,7 +9,7 @@ It expands beyond the original CRC requirements to include modern design, OAC-ba
 
 - Build a **secure, modern, minimalist portfolio website** hosted fully on AWS.  
 - Prioritize **artwork presentation**, with a dedicated **professional resume** page.
-- Implement the **Cloud Resume Challenge visitor counter** using Lambda, API Gateway, and DynamoDB.
+- Implement a **serverless visitor counter** using Lambda, API Gateway, and DynamoDB.
 - Apply **GRC and cloud security best practices**, including:
   - OAC (Origin Access Control)
   - Private S3 bucket (no public access)
@@ -43,7 +43,7 @@ It expands beyond the original CRC requirements to include modern design, OAC-ba
   - Apex and www aliases to CloudFront  
   - **DNSSEC disabled** due to resolver instability during testing
 
-### **Backend (CRC Requirement)**
+### **Backend**
 
 - **API Gateway**
   - HTTPS endpoint for visitor counter
@@ -128,7 +128,7 @@ fetch('https://hvmxivh8yg.execute-api.us-west-1.amazonaws.com/counter')
 
 ---
 
-## 4. CRC Deliverables
+## 4. Deliverables
 
 | Requirement            | Implementation                                   |
 | ---------------------- | ------------------------------------------------ |
@@ -148,7 +148,7 @@ fetch('https://hvmxivh8yg.execute-api.us-west-1.amazonaws.com/counter')
 ### **Week 1**
 - Architecture planning  
 - HTML/CSS prototype  
-- Initial CRC plan and diagrams  
+- Initial project plan and diagrams  
 
 ### **Week 2**
 - Built backend components (Lambda, API Gateway, DynamoDB)  

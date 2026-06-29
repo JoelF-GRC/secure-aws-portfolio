@@ -5,7 +5,7 @@ If you discover a security issue related to this repository, please open a priva
 Do not include sensitive personal information in your report.
 
 ## Scope
-This repository contains source code and documentation for a personal Cloud Resume Challenge project.
+This repository contains source code and documentation for a personal secure AWS portfolio project.
 
 - In scope: this repository and its static site files.
 - Out of scope: any third-party services, unrelated infrastructure, or systems mentioned in documentation.

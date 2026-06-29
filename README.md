@@ -1,6 +1,6 @@
-# AWS Cloud Resume Challenge - Art & Professional Portfolio
+# Secure AWS Portfolio — Art & Professional Site
 
-This project is my implementation of the **AWS Cloud Resume Challenge**, adapted into a personal website that combines an art portfolio with a professional resume page.  
+A secure, serverless personal website on AWS that combines an art portfolio with a professional resume page.  
 The goal is to demonstrate end-to-end use of AWS cloud services while creating something personal, creative, technically sound, and security-minded.
 
 ---
@@ -21,9 +21,9 @@ The site consists of:
 
 ## Architecture Summary
 
-The project follows a standard CRC architecture using AWS managed services:
+The project follows a serverless architecture using AWS managed services:
 
-![AWS Cloud Resume Challenge Architecture](diagrams/architecture.png)
+![Secure AWS Portfolio Architecture](diagrams/architecture.png)
 
 | Layer             | AWS Service                                            | Purpose                                                                                                          |
 | ----------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
@@ -44,9 +44,9 @@ The entire deployment aims to stay within AWS Free Tier and inexpensive services
 ## Repository Structure
 
 ```text
-cloud-resume-challenge/
+secure-aws-portfolio/
 ├── README.md                 # Project overview
-├── crc-plan.md               # Project plan and progress notes
+├── project-plan.md           # Project plan and progress notes
 ├── diagrams/
 │   └── architecture.png      # Architecture diagram
 ├── infrastructure/           # IaC templates for backend services (future)
@@ -69,7 +69,7 @@ cloud-resume-challenge/
 │       └── images/
 │       └── js/main.js
 └── docs/
-    └── site-implementation.md  # CRC requirements and validation notes
+    └── site-implementation.md  # Requirements and validation notes
 ```
 
 ---
@@ -96,8 +96,8 @@ cloud-resume-challenge/
 ## Local Testing
 
 ```bash
-git clone https://github.com/JoelF-GRC/aws-cloud-resume-challenge.git
-cd aws-cloud-resume-challenge/resume-site
+git clone https://github.com/JoelF-GRC/secure-aws-portfolio.git
+cd secure-aws-portfolio/resume-site
 open index.html
 ```
 
