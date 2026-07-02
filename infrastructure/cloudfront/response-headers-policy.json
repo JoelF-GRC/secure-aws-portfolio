@@ -1,0 +1,44 @@
+{
+  "ResponseHeadersPolicyConfig": {
+    "Comment": "",
+    "Name": "joeflood-website",
+    "SecurityHeadersConfig": {
+      "XSSProtection": {
+        "Override": true,
+        "Protection": true,
+        "ModeBlock": true
+      },
+      "FrameOptions": {
+        "Override": true,
+        "FrameOption": "DENY"
+      },
+      "ReferrerPolicy": {
+        "Override": true,
+        "ReferrerPolicy": "strict-origin-when-cross-origin"
+      },
+      "ContentSecurityPolicy": {
+        "Override": true,
+        "ContentSecurityPolicy": "default-src 'self'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self' https://hvmxivh8yg.execute-api.us-west-1.amazonaws.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none';"
+      },
+      "ContentTypeOptions": {
+        "Override": true
+      },
+      "StrictTransportSecurity": {
+        "Override": true,
+        "IncludeSubdomains": true,
+        "Preload": true,
+        "AccessControlMaxAgeSec": 63072000
+      }
+    },
+    "CustomHeadersConfig": {
+      "Quantity": 1,
+      "Items": [
+        {
+          "Header": "Permissions-Policy",
+          "Value": "camera=(), microphone=(), geolocation=(), fullscreen=(self)",
+          "Override": true
+        }
+      ]
+    }
+  }
+}

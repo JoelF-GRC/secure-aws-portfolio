@@ -54,8 +54,8 @@ It covers modern design, OAC-based S3 security, strict CSP headers, GuardDuty, g
   - Logs to CloudWatch
 
 - **DynamoDB**
-  - PK: site_visitors  
-  - Stores integer visitor count  
+  - Table: `crc-visitor-counter`, partition key `pk` (value `resume`)
+  - Stores integer visitor count
   - PITR (point‑in‑time recovery) enabled
 
 ### **Monitoring & Security**
@@ -137,6 +137,7 @@ fetch('https://hvmxivh8yg.execute-api.us-west-1.amazonaws.com/counter')
 | DNS                    | Route 53 with apex + www aliases                 |
 | Visitor counter        | Lambda + DynamoDB + API Gateway                  |
 | JavaScript call to API | External JS with CSP compliance                  |
+| Backend source & config | Lambda source, IAM execution policy, and CloudFront headers policy published in `infrastructure/`, exported from the live account |
 | CI/CD (future)         | GitHub Actions deployment                        |
 | IaC (future)           | Terraform rebuild                                |
 | Extra security         | OAC, CSP, HSTS, GuardDuty, geo-restriction       |

@@ -49,11 +49,15 @@ secure-aws-portfolio/
 ├── project-plan.md           # Project plan and progress notes
 ├── diagrams/
 │   └── architecture.png      # Architecture diagram
-├── infrastructure/           # IaC templates for backend services (future)
-│   └── visitor-counter.yml
+├── infrastructure/           # Actual deployed Lambda source, IAM policy, and
+│   ├── README.md              # CloudFront headers policy, exported from the live
+│   ├── lambda/                # account. Not IaC — a full Terraform rebuild is
+│   ├── iam/                   # tracked as future work below.
+│   └── cloudfront/
 ├── resume-site/              # Static website
-│   ├── robots.txt			  # Block "/images/" from search engines	
+│   ├── robots.txt			  # Block "/assets/images/" from search engines
 │   ├── sitemap.xml
+│   ├── index.html
 │   ├── about.html
 │   ├── 1990s.html
 │   ├── 2000s.html
@@ -87,10 +91,11 @@ secure-aws-portfolio/
 
 ## Progress Snapshot
 
-- **Week 1:** Planned architecture, defined AWS services, created diagrams and base folder structure.  
-- **Week 2:** Developed and tested site locally, configured S3 + CloudFront, and began backend setup (Lambda + DynamoDB).  
-- **Week 3:** Implement security controls - strict CloudFront header security controls (CSP, HSTS, Permissions Policy), geo-restriction, and end-to-end HTTPS.
-- **Week 4:** Connect visitor counter, GuardDuty, complete CI/CD pipeline, and document implementation in `/docs`.
+- **Week 1:** Planned architecture, defined AWS services, created diagrams and base folder structure.
+- **Week 2:** Built and deployed the site to S3 + CloudFront, and stood up the backend (Lambda + API Gateway + DynamoDB).
+- **Week 3:** Hardened CloudFront (CSP, HSTS, Permissions-Policy), tuned geo-restriction, wired up the visitor counter end-to-end, and enabled GuardDuty.
+- **Current state:** Live and fully connected — see `project-plan.md` for the complete architecture and security posture, and `infrastructure/` for the actual deployed Lambda source, IAM policy, and CloudFront headers policy.
+- **Remaining:** CI/CD automation and a full Terraform rebuild (see Future Enhancements in `docs/site-implementation.md`).
 ---
 
 ## Local Testing
@@ -98,10 +103,11 @@ secure-aws-portfolio/
 ```bash
 git clone https://github.com/JoelF-GRC/secure-aws-portfolio.git
 cd secure-aws-portfolio/resume-site
-open index.html
+python3 -m http.server 8000
+# then open http://localhost:8000
 ```
 
-Update the visitor-counter `fetch()` URL in `main.js` (used on `professional.html`) once the API Gateway endpoint is deployed.
+The site uses root-relative paths (`/about`, `/assets/js/main.js`, etc.), so opening `index.html` directly via `file://` will not resolve navigation, scripts, or favicons correctly — serve it from a local web root instead. The visitor-counter endpoint in `main.js` already points at the live, deployed API Gateway endpoint, so the counter will work against production data even when testing locally.
 
 ---
 
@@ -110,12 +116,12 @@ Update the visitor-counter `fetch()` URL in `main.js` (used on `professional.htm
 This project treats security as a design requirement, not an afterthought.
 
 - S3 and DynamoDB encrypted by default.  
-- IAM roles restricted to least privilege.  
-- CloudFront serves content via HTTPS only, as well as security response headers
+- IAM roles restricted to least privilege — see `infrastructure/iam/` for the actual deployed policy, not just the claim.
+- CloudFront serves content via HTTPS only, as well as security response headers — see `infrastructure/cloudfront/` for the actual deployed CSP/HSTS/Permissions-Policy configuration.
 - CloudFront OAC is used to keep the S3 bucket fully private, enforce SigV4-signed origin requests, and ensure only CloudFront can access site content.
 - CloudTrail and CloudWatch log key activity, and backups use S3 versioning + DynamoDB PITR for simple recovery. 
 - CI/CD process maintains version control and traceability.
-- Enabled GuardDuty for passive threat detection across IAM, Lambda, S3, and DNS; it sits outside the data flow and adds continuous monitoring with minimal cost.
+- Enabled GuardDuty for passive threat detection informed by CloudTrail activity, S3 data events, Lambda network activity, and DNS query logs; it sits outside the data flow and adds continuous monitoring with minimal cost.
 
 ---
 ## Challenges / Lessons Learned
@@ -176,7 +182,7 @@ The project mirrors the same principles I apply in enterprise security work—de
 - [Cloud Resume Challenge – AWS](https://cloudresumechallenge.dev/docs/the-challenge/aws/)
 - [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
 - [Amazon S3 Static Website Hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
-- [AWS Serverless Application Model (SAM)](https://aws.amazon.com/serverless/sam/)
+- [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) — planned for the future IaC rebuild (see `project-plan.md`)
 
 ---
 

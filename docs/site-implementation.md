@@ -79,9 +79,12 @@ The site features:
 ### 4.1 File Structure
 
 ```
+├── infrastructure/             # Deployed Lambda source, IAM policy, CloudFront
+│                                  headers policy (exported from the live account)
 ├── resume-site/                # Static website
-   ├── robots.txt			    # Block "/images/" from search engines	
+   ├── robots.txt			    # Block "/assets/images/" from search engines
    ├── sitemap.xml
+   ├── index.html
    ├── about.html
    ├── 1990s.html
    ├── 2000s.html
@@ -148,11 +151,12 @@ All configured at CloudFront, not inline:
 - Initial CSP blocked Google Fonts → fixed by updating font-src
 - `fetch()` to API Gateway blocked → updated connect-src
 - Gallery images blocked → updated img-src
+- `style-src` includes `'unsafe-inline'` to support Google Fonts' generated CSS; `script-src` has no such exception — no inline or eval JavaScript is permitted. See `infrastructure/cloudfront/response-headers-policy.json` for the exact deployed policy.
 
 ### 5.3 GuardDuty
 
 - Enabled at the account level
-- Provides passive threat detection across IAM, S3, CloudTrail, and Lambda
+- Provides passive threat detection informed by CloudTrail activity, S3 data events, Lambda network activity, and DNS query logs
 
 ### 5.4 WAF (Planned)
 
@@ -167,7 +171,7 @@ All configured at CloudFront, not inline:
 
 ### 6.1 Backend Architecture
 
-- DynamoDB table: `site_visitors`
+- DynamoDB table: `crc-visitor-counter` (partition key `pk`, value `resume`)
 - Lambda function:
   - Atomically increments counter
   - Returns count as JSON
@@ -233,7 +237,7 @@ connect-src https://hvmxivh8yg.execute-api.us-west-1.amazonaws.com;
 ### 8.2 Backups
 
 - S3 versioning protects all static site files, with older versions archived automatically via lifecycle rules.
-- DynamoDB PITR enabled for the `site_visitors` table.
+- DynamoDB PITR enabled for the `crc-visitor-counter` table.
 - GitHub maintains full history of source code and site content.
 
 Backups rely on AWS-native features and require no additional operational overhead.

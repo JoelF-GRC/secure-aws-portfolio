@@ -1,0 +1,19 @@
+{
+  "PolicyName": "DynamoDBVisitorCounterAccess",
+  "PolicyDocument": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "dynamodb:UpdateItem",
+          "dynamodb:GetItem"
+        ],
+        "Resource": "arn:aws:dynamodb:us-west-1:<AWS_ACCOUNT_ID>:table/crc-visitor-counter"
+      }
+    ]
+  },
+  "AttachedManagedPolicies": [
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  ]
+}
