@@ -1,4 +1,4 @@
-# Secure AWS Portfolio — Art & Professional Site
+# Secure AWS Portfolio: Art & Professional Site
 
 A secure, serverless personal website on AWS that combines an art portfolio with a professional resume page.  
 The goal is to demonstrate end-to-end use of AWS cloud services while creating something personal, creative, technically sound, and security-minded.
@@ -51,7 +51,7 @@ secure-aws-portfolio/
 │   └── architecture.png      # Architecture diagram
 ├── infrastructure/           # Actual deployed Lambda source, IAM policy, and
 │   ├── README.md              # CloudFront headers policy, exported from the live
-│   ├── lambda/                # account. Not IaC — a full Terraform rebuild is
+│   ├── lambda/                # account. Not IaC; a full Terraform rebuild is
 │   ├── iam/                   # tracked as future work below.
 │   └── cloudfront/
 ├── resume-site/              # Static website
@@ -94,7 +94,7 @@ secure-aws-portfolio/
 - **Week 1:** Planned architecture, defined AWS services, created diagrams and base folder structure.
 - **Week 2:** Built and deployed the site to S3 + CloudFront, and stood up the backend (Lambda + API Gateway + DynamoDB).
 - **Week 3:** Hardened CloudFront (CSP, HSTS, Permissions-Policy), tuned geo-restriction, wired up the visitor counter end-to-end, and enabled GuardDuty.
-- **Current state:** Live and fully connected — see `project-plan.md` for the complete architecture and security posture, and `infrastructure/` for the actual deployed Lambda source, IAM policy, and CloudFront headers policy.
+- **Current state:** Live and fully connected. See `project-plan.md` for the complete architecture and security posture, and `infrastructure/` for the actual deployed Lambda source, IAM policy, and CloudFront headers policy.
 - **Remaining:** CI/CD automation and a full Terraform rebuild (see Future Enhancements in `docs/site-implementation.md`).
 ---
 
@@ -107,7 +107,7 @@ python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-The site uses root-relative paths (`/about`, `/assets/js/main.js`, etc.), so opening `index.html` directly via `file://` will not resolve navigation, scripts, or favicons correctly — serve it from a local web root instead. The visitor-counter endpoint in `main.js` already points at the live, deployed API Gateway endpoint, so the counter will work against production data even when testing locally.
+The site uses root-relative paths (`/about`, `/assets/js/main.js`, etc.), so opening `index.html` directly via `file://` will not resolve navigation, scripts, or favicons correctly; serve it from a local web root instead. The visitor-counter endpoint in `main.js` already points at the live, deployed API Gateway endpoint, so the counter will work against production data even when testing locally.
 
 ---
 
@@ -116,8 +116,8 @@ The site uses root-relative paths (`/about`, `/assets/js/main.js`, etc.), so ope
 This project treats security as a design requirement, not an afterthought.
 
 - S3 and DynamoDB encrypted by default.  
-- IAM roles restricted to least privilege — see `infrastructure/iam/` for the actual deployed policy, not just the claim.
-- CloudFront serves content via HTTPS only, as well as security response headers — see `infrastructure/cloudfront/` for the actual deployed CSP/HSTS/Permissions-Policy configuration.
+- IAM roles restricted to least privilege: see `infrastructure/iam/` for the actual deployed policy, not just the claim.
+- CloudFront serves content via HTTPS only, as well as security response headers: see `infrastructure/cloudfront/` for the actual deployed CSP/HSTS/Permissions-Policy configuration.
 - CloudFront OAC is used to keep the S3 bucket fully private, enforce SigV4-signed origin requests, and ensure only CloudFront can access site content.
 - CloudTrail and CloudWatch log key activity, and backups use S3 versioning + DynamoDB PITR for simple recovery. 
 - CI/CD process maintains version control and traceability.
@@ -173,7 +173,7 @@ After updating CSP and invalidating CloudFront, the counter worked immediately.
 **Lesson:** strict CSP is great, but you must explicitly allow the domains your app needs.
 
 ---
-The project mirrors the same principles I apply in enterprise security work—defense-in-depth, least privilege, secure defaults, observability, and continuous validation.
+The project mirrors the same principles I apply in enterprise security work: defense-in-depth, least privilege, secure defaults, observability, and continuous validation.
 
 ---
 
@@ -182,7 +182,7 @@ The project mirrors the same principles I apply in enterprise security work—de
 - [Cloud Resume Challenge – AWS](https://cloudresumechallenge.dev/docs/the-challenge/aws/)
 - [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
 - [Amazon S3 Static Website Hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
-- [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) — planned for the future IaC rebuild (see `project-plan.md`)
+- [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs): planned for the future IaC rebuild (see `project-plan.md`)
 
 ---
 
