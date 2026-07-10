@@ -177,6 +177,11 @@ The project mirrors the same principles I apply in enterprise security work: def
 
 ---
 
+## AI Tooling
+AI was used after the site and infrastructure were built, to review this repo's documentation and security configuration: checking for gaps, consistency between the docs and what's actually deployed, and overall security posture. All content is authored, reviewed, and validated by a human with GRC domain expertise.
+
+---
+
 ## References
 
 - [Cloud Resume Challenge – AWS](https://cloudresumechallenge.dev/docs/the-challenge/aws/)
